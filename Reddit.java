@@ -1,23 +1,14 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.omg.CosNaming.IstringHelper;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Reddit extends JFrame {
+
 
     // this is the main panel that will hold all the components
     static JPanel mainPanel = new JPanel();
@@ -88,7 +79,7 @@ public class Reddit extends JFrame {
     public static void setUpComponents(){
 
         // the label that will hold the reddit logo
-        JLabel redditIcon = new JLabel(new ImageIcon());
+        JLabel redditIcon = new JLabel();
         // set where the reddit logo will sit in the panel
         redditIcon.setBounds(10, 10, 100, 100);
         // pass the label to our method that will resize the logo
@@ -98,9 +89,9 @@ public class Reddit extends JFrame {
 
         // set where the textfield will sit in the panel
         textField.setBounds(160, 20, 250, 30);
-       // set the position for the search button as well
+        // set the position for the search button as well
         search.setBounds(415, 23, 85, 25);
-      // set the textfield background to dark red
+        // set the textfield background to dark red
         textField.setBackground(Color.decode("#8B0000"));
 
         // setting the background and the foreground of the search button
@@ -164,6 +155,7 @@ public class Reddit extends JFrame {
         voteTitle.setForeground(Color.WHITE);
         voteTitle.setBounds(755, 70, 120, 30);
         mainPanel.add(voteTitle);
+
         for (int i = 0; i < votes.length;i++){
 
             votes[i] = new JLabel("");
@@ -199,7 +191,7 @@ public class Reddit extends JFrame {
         {
             // set the base url and add the sub name that was passed by the user from the textfield
             Document doc = Jsoup.connect("https://old.reddit.com/r/"+sub).get();
-          // we are only interested the headline of each thread in the sub
+            // we are only interested the headline of each thread in the sub
             Elements el = doc.select("p.title");
             // and the score of each thread
             Elements score = doc.select("div.score.unvoted");
@@ -223,6 +215,7 @@ public class Reddit extends JFrame {
         }
 
     }
+
     // here is to resize the reddit logo
     public static void resizeRedditLogo(JLabel label){
 
@@ -242,5 +235,7 @@ public class Reddit extends JFrame {
     public static void main(String[] args) {
         new Reddit();
     }
+
+
 
 }
